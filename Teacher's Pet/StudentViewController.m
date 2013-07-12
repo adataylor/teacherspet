@@ -74,8 +74,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [[[Tasks tasksSingleton] allTasks] reloadData];
+    NSLog(@"I wish i could add a Task");
+    //[[[Tasks tasksSingleton] allTasks] reloadData];
 }
+
+
 //- (void)loadView
 //
 //{
