@@ -74,7 +74,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [[[Tasks tasksSingleton] allTasks] reloadData];
+   // [[[Tasks tasksSingleton] allTasks] reloadData];
 }
 //- (void)loadView
 //
