@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TeacherViewController : UIViewController
-
+- (void)exitView;
 @end

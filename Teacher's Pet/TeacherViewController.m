@@ -9,6 +9,7 @@
 #import "TeacherViewController.h"
 
 @interface TeacherViewController ()
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 
 @end
 
@@ -19,8 +20,14 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        UINavigationItem *n = [self navigationItem];
+        
+        [n setTitle:@"Teacher"];
     }
     return self;
+}
+- (IBAction)exitView:(id)sender {
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (void)viewDidLoad
@@ -33,6 +40,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)addTask:(id)sender {
+    //For teacher to add a new task
 }
 
 @end
