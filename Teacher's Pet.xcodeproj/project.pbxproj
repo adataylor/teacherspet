@@ -16,6 +16,12 @@
 		60ED48E2178F81B4003C2A0D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 60ED48E1178F81B4003C2A0D /* Default.png */; };
 		60ED48E4178F81B4003C2A0D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60ED48E3178F81B4003C2A0D /* Default@2x.png */; };
 		60ED48E6178F81B4003C2A0D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60ED48E5178F81B4003C2A0D /* Default-568h@2x.png */; };
+		60ED48EF178F81EF003C2A0D /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60ED48ED178F81EF003C2A0D /* IntroViewController.m */; };
+		60ED48F0178F81EF003C2A0D /* IntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60ED48EE178F81EF003C2A0D /* IntroViewController.xib */; };
+		60ED48F4178F8310003C2A0D /* TeacherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60ED48F2178F8310003C2A0D /* TeacherViewController.m */; };
+		60ED48F5178F8310003C2A0D /* TeacherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60ED48F3178F8310003C2A0D /* TeacherViewController.xib */; };
+		60ED48F9178F831B003C2A0D /* StudentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60ED48F7178F831B003C2A0D /* StudentViewController.m */; };
+		60ED48FA178F831B003C2A0D /* StudentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60ED48F8178F831B003C2A0D /* StudentViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +38,15 @@
 		60ED48E1178F81B4003C2A0D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		60ED48E3178F81B4003C2A0D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		60ED48E5178F81B4003C2A0D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		60ED48EC178F81EF003C2A0D /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
+		60ED48ED178F81EF003C2A0D /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
+		60ED48EE178F81EF003C2A0D /* IntroViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroViewController.xib; sourceTree = "<group>"; };
+		60ED48F1178F8310003C2A0D /* TeacherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherViewController.h; sourceTree = "<group>"; };
+		60ED48F2178F8310003C2A0D /* TeacherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherViewController.m; sourceTree = "<group>"; };
+		60ED48F3178F8310003C2A0D /* TeacherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeacherViewController.xib; sourceTree = "<group>"; };
+		60ED48F6178F831B003C2A0D /* StudentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentViewController.h; sourceTree = "<group>"; };
+		60ED48F7178F831B003C2A0D /* StudentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentViewController.m; sourceTree = "<group>"; };
+		60ED48F8178F831B003C2A0D /* StudentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudentViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +95,15 @@
 			children = (
 				60ED48DE178F81B4003C2A0D /* TeachersPetAppDelegate.h */,
 				60ED48DF178F81B4003C2A0D /* TeachersPetAppDelegate.m */,
+				60ED48EC178F81EF003C2A0D /* IntroViewController.h */,
+				60ED48ED178F81EF003C2A0D /* IntroViewController.m */,
+				60ED48EE178F81EF003C2A0D /* IntroViewController.xib */,
+				60ED48F1178F8310003C2A0D /* TeacherViewController.h */,
+				60ED48F2178F8310003C2A0D /* TeacherViewController.m */,
+				60ED48F3178F8310003C2A0D /* TeacherViewController.xib */,
+				60ED48F6178F831B003C2A0D /* StudentViewController.h */,
+				60ED48F7178F831B003C2A0D /* StudentViewController.m */,
+				60ED48F8178F831B003C2A0D /* StudentViewController.xib */,
 				60ED48D6178F81B4003C2A0D /* Supporting Files */,
 			);
 			path = "Teacher's Pet";
@@ -155,6 +179,9 @@
 				60ED48E2178F81B4003C2A0D /* Default.png in Resources */,
 				60ED48E4178F81B4003C2A0D /* Default@2x.png in Resources */,
 				60ED48E6178F81B4003C2A0D /* Default-568h@2x.png in Resources */,
+				60ED48F0178F81EF003C2A0D /* IntroViewController.xib in Resources */,
+				60ED48F5178F8310003C2A0D /* TeacherViewController.xib in Resources */,
+				60ED48FA178F831B003C2A0D /* StudentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +194,9 @@
 			files = (
 				60ED48DC178F81B4003C2A0D /* main.m in Sources */,
 				60ED48E0178F81B4003C2A0D /* TeachersPetAppDelegate.m in Sources */,
+				60ED48EF178F81EF003C2A0D /* IntroViewController.m in Sources */,
+				60ED48F4178F8310003C2A0D /* TeacherViewController.m in Sources */,
+				60ED48F9178F831B003C2A0D /* StudentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

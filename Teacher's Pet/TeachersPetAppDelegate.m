@@ -7,6 +7,7 @@
 //
 
 #import "TeachersPetAppDelegate.h"
+#import "IntroViewController.h"
 
 @implementation TeachersPetAppDelegate
 
@@ -14,6 +15,12 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    NSBundle *appBundle = [NSBundle mainBundle];
+    IntroViewController *iv = [[IntroViewController alloc] init];
+    [[self window] setRootViewController:iv];
+    
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
