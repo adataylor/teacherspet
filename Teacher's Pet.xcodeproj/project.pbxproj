@@ -22,6 +22,7 @@
 		60ED48F5178F8310003C2A0D /* TeacherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60ED48F3178F8310003C2A0D /* TeacherViewController.xib */; };
 		60ED48F9178F831B003C2A0D /* StudentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60ED48F7178F831B003C2A0D /* StudentViewController.m */; };
 		60ED48FA178F831B003C2A0D /* StudentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60ED48F8178F831B003C2A0D /* StudentViewController.xib */; };
+		82079D68178FB1D600ACAEF6 /* Tasks.m in Sources */ = {isa = PBXBuildFile; fileRef = 82079D67178FB1D600ACAEF6 /* Tasks.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,8 @@
 		60ED48F6178F831B003C2A0D /* StudentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentViewController.h; sourceTree = "<group>"; };
 		60ED48F7178F831B003C2A0D /* StudentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentViewController.m; sourceTree = "<group>"; };
 		60ED48F8178F831B003C2A0D /* StudentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudentViewController.xib; sourceTree = "<group>"; };
+		82079D66178FB1D600ACAEF6 /* Tasks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tasks.h; sourceTree = "<group>"; };
+		82079D67178FB1D600ACAEF6 /* Tasks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tasks.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +107,8 @@
 				60ED48F6178F831B003C2A0D /* StudentViewController.h */,
 				60ED48F7178F831B003C2A0D /* StudentViewController.m */,
 				60ED48F8178F831B003C2A0D /* StudentViewController.xib */,
+				82079D66178FB1D600ACAEF6 /* Tasks.h */,
+				82079D67178FB1D600ACAEF6 /* Tasks.m */,
 				60ED48D6178F81B4003C2A0D /* Supporting Files */,
 			);
 			path = "Teacher's Pet";
@@ -197,6 +202,7 @@
 				60ED48EF178F81EF003C2A0D /* IntroViewController.m in Sources */,
 				60ED48F4178F8310003C2A0D /* TeacherViewController.m in Sources */,
 				60ED48F9178F831B003C2A0D /* StudentViewController.m in Sources */,
+				82079D68178FB1D600ACAEF6 /* Tasks.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +319,7 @@
 				60ED48EB178F81B4003C2A0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

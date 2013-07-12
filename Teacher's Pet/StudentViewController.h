@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface StudentViewController : UIViewController
-
+- (void)exitView;
+- (float)difficulty; //returns current difficult of slider bar
 @end
