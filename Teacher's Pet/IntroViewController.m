@@ -37,21 +37,81 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)teacherClick:(id)sender {
+
+- (IBAction)teacherAlertMessage:(id)sender{
     NSBundle *appBundle = [NSBundle mainBundle];
-    TeacherViewController *tv = [[TeacherViewController alloc] init];
     
-    [self presentViewController:tv animated:YES completion:nil];
+    UIAlertView *teacherMessage = [[UIAlertView alloc] initWithTitle:@"Class ID:"
+                                                      message:@"Enter ID."
+                                                     delegate:self
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+    teacherMessage.alertViewStyle = UIAlertViewStylePlainTextInput;
     
-    //[[self window] setRootViewController:tv];
+   // [alertView:teacherMessage clickedButtonAtIndex:0];
+    [teacherMessage show];
 }
 
-- (IBAction)studentClick:(id)sender {
-    NSBundle *appBundle = [NSBundle mainBundle];
-    StudentViewController *sv = [[StudentViewController alloc] init];
-    
-    [self presentViewController:sv animated:YES completion:nil];
-    //[[self window] setRootViewController:sv];
+- (BOOL)idVerification:(UIAlertView *)alertView
+{
+    NSString *inputText = [[alertView textFieldAtIndex:0] text];
+    if([[[alertView textFieldAtIndex:0] text] isEqualToString:@"A"])
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
 }
+
+
+
+
+- (void)alertView:(UIAlertView *)alertView
+clickedButtonAtIndex:(NSInteger)buttonIndex{
+
+    if ([self idVerification:alertView]){
+    if (buttonIndex == 0){
+        TeacherViewController *tv = [[TeacherViewController alloc] init];
+        
+        [self presentViewController:tv animated:YES completion:nil];
+    }
+    }
+    else
+    {
+        
+        UIAlertView *wrongPassword = [[UIAlertView alloc] initWithTitle:@"Wrong ID!"
+                                                                 message:@":("
+                                                                delegate:self
+                                                       cancelButtonTitle:@"OK"
+                                                       otherButtonTitles:nil];
+        [wrongPassword show];
+        
+        //[wrongPassword release];
+        
+        //[wrongPassword dismissWithClickedButtonAtIndex:nil animated:YES];
+        
+    }
+}
+
+
+- (IBAction)studentAlertMessage:(id)sender{
+    NSBundle *appBundle = [NSBundle mainBundle];
+    
+    UIAlertView *studentMessage = [[UIAlertView alloc] initWithTitle:@"Class ID:"
+                                                             message:@"Enter ID."
+                                                            delegate:self
+                                                   cancelButtonTitle:@"OK"
+                                                   otherButtonTitles:nil];
+    studentMessage.alertViewStyle = UIAlertViewStylePlainTextInput;
+    
+    // [alertView:teacherMessage clickedButtonAtIndex:0];
+    [studentMessage show];
+}
+
+
+
+
 
 @end

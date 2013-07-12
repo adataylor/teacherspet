@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IntroViewController : UIViewController
+@interface IntroViewController : UIViewController <UIAlertViewDelegate>
 
-- (IBAction)teacherClick:(id)sender;
-- (IBAction)studentClick:(id)sender;
+- (IBAction)teacherAlertMessage:(id)sender;
+//- (IBAction)teacherClick:(id)sender;
+- (IBAction)studentAlertMessage:(id)sender;
 
 @end
