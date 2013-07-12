@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Tasks : NSObject
+@interface Tasks : UITableView
 {
     NSMutableArray *allTasks;
 }
