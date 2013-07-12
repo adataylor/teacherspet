@@ -47,6 +47,7 @@
                                             cancelButtonTitle:@"OK"
                                             otherButtonTitles:nil];
     teacherMessage.alertViewStyle = UIAlertViewStylePlainTextInput;
+    teacherMessage.tag = 101;
     
    // [alertView:teacherMessage clickedButtonAtIndex:0];
     [teacherMessage show];
@@ -73,9 +74,17 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
 
     if ([self idVerification:alertView]){
     if (buttonIndex == 0){
-        TeacherViewController *tv = [[TeacherViewController alloc] init];
+        if (alertView.tag == 101)
+        {
+          TeacherViewController *tv = [[TeacherViewController alloc] init];
         
-        [self presentViewController:tv animated:YES completion:nil];
+          [self presentViewController:tv animated:YES completion:nil];
+        }
+        else
+        {
+           StudentViewController *sv = [[StudentViewController alloc] init];
+          [self presentViewController:sv animated:YES completion:nil];
+        }
     }
     }
     else
@@ -105,6 +114,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex{
                                                    cancelButtonTitle:@"OK"
                                                    otherButtonTitles:nil];
     studentMessage.alertViewStyle = UIAlertViewStylePlainTextInput;
+    studentMessage.tag = 102;
     
     // [alertView:teacherMessage clickedButtonAtIndex:0];
     [studentMessage show];
