@@ -23,6 +23,9 @@
 		60ED48F9178F831B003C2A0D /* StudentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60ED48F7178F831B003C2A0D /* StudentViewController.m */; };
 		60ED48FA178F831B003C2A0D /* StudentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60ED48F8178F831B003C2A0D /* StudentViewController.xib */; };
 		82079D68178FB1D600ACAEF6 /* Tasks.m in Sources */ = {isa = PBXBuildFile; fileRef = 82079D67178FB1D600ACAEF6 /* Tasks.m */; };
+		A6E5914A179709A400A533F2 /* ServeUp.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E59149179709A400A533F2 /* ServeUp.m */; };
+		A6E5915C1797710500A533F2 /* HelpMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E5915A1797710500A533F2 /* HelpMessageViewController.m */; };
+		A6E5915D1797710500A533F2 /* HelpMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6E5915B1797710500A533F2 /* HelpMessageViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,11 @@
 		60ED48F8178F831B003C2A0D /* StudentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudentViewController.xib; sourceTree = "<group>"; };
 		82079D66178FB1D600ACAEF6 /* Tasks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tasks.h; sourceTree = "<group>"; };
 		82079D67178FB1D600ACAEF6 /* Tasks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tasks.m; sourceTree = "<group>"; };
+		A6E59148179709A400A533F2 /* ServeUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServeUp.h; sourceTree = "<group>"; };
+		A6E59149179709A400A533F2 /* ServeUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServeUp.m; sourceTree = "<group>"; };
+		A6E591591797710500A533F2 /* HelpMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelpMessageViewController.h; path = ../HelpMessageViewController.h; sourceTree = "<group>"; };
+		A6E5915A1797710500A533F2 /* HelpMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelpMessageViewController.m; path = ../HelpMessageViewController.m; sourceTree = "<group>"; };
+		A6E5915B1797710500A533F2 /* HelpMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HelpMessageViewController.xib; path = ../HelpMessageViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,17 +104,22 @@
 		60ED48D5178F81B4003C2A0D /* Teacher's Pet */ = {
 			isa = PBXGroup;
 			children = (
-				604FC5A617909E340036F707 /* IntroViewController.xib */,
+				A6E59148179709A400A533F2 /* ServeUp.h */,
+				A6E59149179709A400A533F2 /* ServeUp.m */,
 				60ED48DE178F81B4003C2A0D /* TeachersPetAppDelegate.h */,
 				60ED48DF178F81B4003C2A0D /* TeachersPetAppDelegate.m */,
 				60ED48EC178F81EF003C2A0D /* IntroViewController.h */,
 				60ED48ED178F81EF003C2A0D /* IntroViewController.m */,
+				604FC5A617909E340036F707 /* IntroViewController.xib */,
 				60ED48F1178F8310003C2A0D /* TeacherViewController.h */,
 				60ED48F2178F8310003C2A0D /* TeacherViewController.m */,
 				60ED48F3178F8310003C2A0D /* TeacherViewController.xib */,
 				60ED48F6178F831B003C2A0D /* StudentViewController.h */,
 				60ED48F7178F831B003C2A0D /* StudentViewController.m */,
 				60ED48F8178F831B003C2A0D /* StudentViewController.xib */,
+				A6E591591797710500A533F2 /* HelpMessageViewController.h */,
+				A6E5915A1797710500A533F2 /* HelpMessageViewController.m */,
+				A6E5915B1797710500A533F2 /* HelpMessageViewController.xib */,
 				82079D66178FB1D600ACAEF6 /* Tasks.h */,
 				82079D67178FB1D600ACAEF6 /* Tasks.m */,
 				60ED48D6178F81B4003C2A0D /* Supporting Files */,
@@ -187,6 +200,7 @@
 				60ED48F5178F8310003C2A0D /* TeacherViewController.xib in Resources */,
 				60ED48FA178F831B003C2A0D /* StudentViewController.xib in Resources */,
 				604FC5A717909E340036F707 /* IntroViewController.xib in Resources */,
+				A6E5915D1797710500A533F2 /* HelpMessageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +217,8 @@
 				60ED48F4178F8310003C2A0D /* TeacherViewController.m in Sources */,
 				60ED48F9178F831B003C2A0D /* StudentViewController.m in Sources */,
 				82079D68178FB1D600ACAEF6 /* Tasks.m in Sources */,
+				A6E5914A179709A400A533F2 /* ServeUp.m in Sources */,
+				A6E5915C1797710500A533F2 /* HelpMessageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

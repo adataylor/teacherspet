@@ -9,6 +9,7 @@
 #import "IntroViewController.h"
 #import "TeacherViewController.h"
 #import "StudentViewController.h"
+#import "ServeUp.h"
 
 @interface IntroViewController ()
 
@@ -28,7 +29,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,12 +39,12 @@
 
 
 - (IBAction)teacherAlertMessage:(id)sender{
-    NSBundle *appBundle = [NSBundle mainBundle];
+    //NSBundle *appBundle = [NSBundle mainBundle];
     
-    UIAlertView *teacherMessage = [[UIAlertView alloc] initWithTitle:@"Class ID:"
-                                                      message:@"Enter ID."
+    UIAlertView *teacherMessage = [[UIAlertView alloc] initWithTitle:@"Class ID"
+                                                      message:@"Enter the class ID:"
                                                      delegate:self
-                                            cancelButtonTitle:@"OK"
+                                            cancelButtonTitle:@"Create Class"
                                             otherButtonTitles:nil];
     teacherMessage.alertViewStyle = UIAlertViewStylePlainTextInput;
     teacherMessage.tag = 101;
@@ -53,17 +53,31 @@
     [teacherMessage show];
 }
 
+
+
+
+
+
+//check to see if the selected ClassID exists; for students only
 - (BOOL)idVerification:(UIAlertView *)alertView
 {
     NSString *inputText = [[alertView textFieldAtIndex:0] text];
-    if([[[alertView textFieldAtIndex:0] text] isEqualToString:@"A"])
-    {
+    if([ServeUp joinClass:[inputText integerValue] fromUser:[[NSUserDefaults standardUserDefaults] stringForKey:@"uId"]]){
+        NSDictionary* cIdDefaults = [NSDictionary dictionaryWithObject:inputText forKey:@"cId"];
+        [[NSUserDefaults standardUserDefaults] registerDefaults:cIdDefaults];
         return YES;
     }
     else
-    {
         return NO;
-    }
+    //BOOL verified = NO;
+    //while(verified == NO){
+    //    verified = [ServeUp joinClass:[inputText integerValue] fromUser:[[NSUserDefaults standardUserDefaults] stringForKey:@"uId"]];
+    //}
+}
+
+-(BOOL)nameVerification:(UIAlertView*)alertView{
+    //TODO verify name okay -- need a function to return if in table.
+    return YES;
 }
 
 
@@ -72,56 +86,89 @@
 - (void)alertView:(UIAlertView *)alertView
 clickedButtonAtIndex:(NSInteger)buttonIndex{
 
-    if ([self idVerification:alertView]){
-    if (buttonIndex == 0){
-        if (alertView.tag == 101)
-        {
-          TeacherViewController *tv = [[TeacherViewController alloc] init];
-        
-          [self presentViewController:tv animated:YES completion:nil];
-        }
-        else
-        {
-           StudentViewController *sv = [[StudentViewController alloc] init];
-          [self presentViewController:sv animated:YES completion:nil];
-        }
-    }
-    }
-    else
+    //Teacher class add handler
+    if (alertView.tag == 101)
     {
-        
-        UIAlertView *wrongPassword = [[UIAlertView alloc] initWithTitle:@"Wrong ID!"
-                                                                 message:@":("
-                                                                delegate:self
-                                                       cancelButtonTitle:@"OK"
-                                                       otherButtonTitles:nil];
-        [wrongPassword show];
-        
-        //[wrongPassword release];
-        
-        //[wrongPassword dismissWithClickedButtonAtIndex:nil animated:YES];
-        
+        NSDictionary* dflts = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:[ServeUp newClass]] forKey:@"cId"];
+        [[NSUserDefaults standardUserDefaults] registerDefaults:dflts];
+        TeacherViewController *teacherVC = [[TeacherViewController alloc] init];
+        [self presentViewController:teacherVC animated:YES completion:nil];
+    }
+    
+    //student class add handler
+    else if (alertView.tag == 102)
+    {
+        if ([self idVerification:alertView]){
+            StudentViewController *studentVC = [[StudentViewController alloc] init];
+            [self presentViewController:studentVC animated:YES completion:nil];
+        }
+        else{
+            [self invalidity:nil];// TODO time-separator problems? can't test until joinClass server backend finished
+            [self studentJoinClassPrompt:nil];
+        }
+    }
+    
+    //student name handler
+    else if (alertView.tag == 103){
+        if([self nameVerification:alertView]){
+            NSString* name =[[alertView textFieldAtIndex:0] text];
+            UIDevice* device = [[UIDevice alloc] init];
+            NSString* phone = [[device identifierForVendor] UUIDString];
+            NSString* pace =@"0.5";
+            NSDictionary* paceDefault = [NSDictionary dictionaryWithObject:@0.5 forKey:@"pace"];
+            [[NSUserDefaults standardUserDefaults] registerDefaults:paceDefault];
+            NSString* newUserIdString = [ServeUp newUser:name withPace:pace withPhone:phone];
+            NSDictionary* uIdDefault = [NSDictionary dictionaryWithObjects:@[newUserIdString, name] forKeys:@[@"uId", @"uName"]];
+            [[NSUserDefaults standardUserDefaults] registerDefaults:uIdDefault];
+            NSDictionary* endFirstLoaded = [NSDictionary dictionaryWithObject:@YES forKey:@"firstTimeLoaded"];
+            [[NSUserDefaults standardUserDefaults] registerDefaults:endFirstLoaded];
+            [self studentJoinClassPrompt:alertView];
+        }
+        else{
+            [self invalidity:nil]; //TODO time-separator problems? can't test until joinClass server backend finished
+            [self studentUsernamePrompt:nil];
+        }
     }
 }
 
 
-- (IBAction)studentAlertMessage:(id)sender{
-    NSBundle *appBundle = [NSBundle mainBundle];
-    
-    UIAlertView *studentMessage = [[UIAlertView alloc] initWithTitle:@"Class ID:"
-                                                             message:@"Enter ID."
+- (IBAction)studentUsernamePrompt:(id)sender{
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"firstTimeLoaded"]){
+        StudentViewController *studentVC = [[StudentViewController alloc] init];
+        [self presentViewController:studentVC animated:YES completion:nil];
+    }
+    else{
+        UIAlertView *studentMessage = [[UIAlertView alloc] initWithTitle:@"Username"
+                                                             message:@"Enter your name:"
                                                             delegate:self
-                                                   cancelButtonTitle:@"OK"
+                                                   cancelButtonTitle:@"Sign Up"
+                                                   otherButtonTitles:nil];
+        studentMessage.alertViewStyle = UIAlertViewStylePlainTextInput;
+        studentMessage.tag = 103;
+        [studentMessage show];
+    }
+}
+
+- (void)studentJoinClassPrompt:(id)sender{
+    //NSBundle *appBundle = [NSBundle mainBundle];
+    UIAlertView *studentMessage = [[UIAlertView alloc] initWithTitle:@"Class ID"
+                                                             message:@"Enter your class ID:"
+                                                            delegate:self
+                                                   cancelButtonTitle:@"Join Class"
                                                    otherButtonTitles:nil];
     studentMessage.alertViewStyle = UIAlertViewStylePlainTextInput;
     studentMessage.tag = 102;
-    
-    // [alertView:teacherMessage clickedButtonAtIndex:0];
     [studentMessage show];
 }
 
-
-
-
+-(void)invalidity:(id)sender{
+    UIAlertView *wrongPassword = [[UIAlertView alloc] initWithTitle:@"Invalid ID"
+                                                            message:@""
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+    [wrongPassword show];
+        //[wrongPassword dismissWithClickedButtonAtIndex:nil animated:YES];
+}
 
 @end

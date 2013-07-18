@@ -8,6 +8,9 @@
 
 #import "StudentViewController.h"
 #import "Tasks.h"
+#import "ServeUp.h"
+#import "HelpMessageViewController.h"
+
 @interface StudentViewController ()
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (weak, nonatomic) IBOutlet UISlider *difficultyBar;
@@ -15,6 +18,8 @@
 @end
 
 @implementation StudentViewController
+
+//Hit back button (called "exit")
 - (IBAction)exitView:(id)sender {
     [self dismissViewControllerAnimated:NO completion:nil];
 }
@@ -23,23 +28,32 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        UINavigationItem *n = [self navigationItem];
-        
-        [n setTitle:@"Student"];
-        
+        UINavigationItem *navBar = [self navigationItem];
+        //NSString* title = [NSString stringWithFormat:@"Welcome, %@!", [[NSUserDefaults standardUserDefaults] stringForKey:@"uName"]];
+        //[navBar setTitle:title];
     }
     return self;
 }
+
+//on move of paceBar slider, store this as the new pace, and send to server to update tables.
 - (IBAction)difficultyChanged:(id)sender {
-    
+    NSLog(@"%f", [[self difficultyBar] value]);
+    NSDictionary* paceDefault = [NSDictionary dictionaryWithObject:@([[self difficultyBar] value]) forKey:@"pace"];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:paceDefault];
+    [ServeUp setMyPace:[[NSUserDefaults standardUserDefaults] stringForKey:@"uName"] withPace:[[self difficultyBar] value]];
 }
+
+//gets the value of the paceBar
 - (float)difficulty{
     return _difficultyBar.value;
 }
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    //sets the value of the paceBar to the stored val to start
+    [[self difficultyBar] setValue:[[[NSUserDefaults standardUserDefaults] stringForKey:@"pace"] floatValue]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,45 +65,29 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Create an instance of UITableViewCell, with default appearance
-    // Check for a reusable cell first, use that if it exists
-    UITableViewCell *cell =
-    [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
-    
-    // If there is no reusable cell of this type, create a new one
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+
     if (!cell) {
-        cell = [[UITableViewCell alloc]
-                initWithStyle:UITableViewCellStyleDefault
-                reuseIdentifier:@"UITableViewCell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
     }
-    // Set the text on the cell with the description of the item
-    // that is at the nth index of items, where n = row this cell
-    // will appear in on the tableview
-    Tasks *p = [[[Tasks tasksSingleton] allTasks]
-                  objectAtIndex:[indexPath row]];
+
+    Tasks *p = [[[Tasks tasksSingleton] allTasks] objectAtIndex:[indexPath row]];
     [[cell textLabel] setText:[p description]];
     return cell;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [[[Tasks tasksSingleton] allTasks] count];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-   // [[[Tasks tasksSingleton] allTasks] reloadData];
-    NSLog(@"I wish i could add a Task");
-    //[[[Tasks tasksSingleton] allTasks] reloadData];
+    [[self tasksList] reloadData];
 }
 
-
-//- (void)loadView
-//
-//{
-//
-//    UITableView *tableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] style:UITableViewStylePlain];
-//    tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-//    tableView.delegate = self;
-//    tableView.dataSource = self;
-//    [tableView reloadData];    
-//    self.view = tableView;
-//    
-//}
+- (IBAction)needsHelp:(id)sender {
+    HelpMessageViewController *helpVC = [[HelpMessageViewController alloc] init];
+    [self presentViewController:helpVC animated:YES completion:nil];
+}
 @end

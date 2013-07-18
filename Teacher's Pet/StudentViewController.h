@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface StudentViewController : UIViewController
-- (void)exitView;
-- (float)difficulty; //returns current difficult of slider bar
+- (IBAction)needsHelp:(id)sender;
+@property (weak, nonatomic) IBOutlet UITableView *tasksList;
+- (IBAction)exitView:(id)sender;
+- (float)difficulty; 
 @end

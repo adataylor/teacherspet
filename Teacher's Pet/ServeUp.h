@@ -17,5 +17,6 @@
 +(BOOL)finishTask:(NSString*)user withTaskId:(NSInteger)taskId;
 +(NSInteger)getTaskPercent:(NSString*)user withTaskId:(NSInteger)taskId;
 +(NSInteger)getPaceAvg:(NSInteger)taskId;
-+(BOOL)setMyPace:(NSString*)user forTask:(NSInteger)taskId;
++(BOOL)setMyPace:(NSString*)user withPace:(NSInteger)pace;
++(NSInteger)sendHelp:(NSString*)user;
 @end

@@ -109,8 +109,8 @@
     return paceNum;
 }
 
-+(BOOL)setMyPace:(NSString*)user forTask:(NSInteger)taskId{
-    NSString *url = [NSString stringWithFormat:@"https://adat.scripts.mit.edu:444/www/dev/facebook/teacherspet/setMyPace.php?studentId=%@&id=%d", user, taskId];
++(BOOL)setMyPace:(NSString*)user withPace:(NSInteger)pace{
+    NSString *url = [NSString stringWithFormat:@"https://adat.scripts.mit.edu:444/www/dev/facebook/teacherspet/setMyPace.php?studentId=%@&pace=%d", user, pace];
     //NSLog(@"%@", url);
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"GET"];
@@ -139,6 +139,11 @@
         return YES;
     }
     return NO;
+}
+
++(NSInteger)sendHelp:(NSString*)user{
+    //TODO - returns what number they are in line. Finish on completion of server backend.
+    return 0;
 }
 
 @end

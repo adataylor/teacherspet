@@ -11,7 +11,6 @@
 @interface IntroViewController : UIViewController <UIAlertViewDelegate>
 
 - (IBAction)teacherAlertMessage:(id)sender;
-//- (IBAction)teacherClick:(id)sender;
-- (IBAction)studentAlertMessage:(id)sender;
+- (IBAction)studentUsernamePrompt:(id)sender;
 
 @end
