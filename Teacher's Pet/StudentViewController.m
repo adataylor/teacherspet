@@ -11,7 +11,7 @@
 #import "ServeUp.h"
 #import "HelpMessageViewController.h"
 
-@interface StudentViewController ()
+@interface StudentViewController () <UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (weak, nonatomic) IBOutlet UISlider *difficultyBar;
 
@@ -19,20 +19,9 @@
 
 @implementation StudentViewController
 
-//Hit back button (called "exit")
+//Hit back button (called "leave class")
 - (IBAction)exitView:(id)sender {
-    [self dismissViewControllerAnimated:NO completion:nil];
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        UINavigationItem *navBar = [self navigationItem];
-        //NSString* title = [NSString stringWithFormat:@"Welcome, %@!", [[NSUserDefaults standardUserDefaults] stringForKey:@"uName"]];
-        //[navBar setTitle:title];
-    }
-    return self;
+    [self verifyAction];
 }
 
 //on move of paceBar slider, store this as the new pace, and send to server to update tables.
@@ -40,7 +29,7 @@
     NSLog(@"%f", [[self difficultyBar] value]);
     NSDictionary* paceDefault = [NSDictionary dictionaryWithObject:@([[self difficultyBar] value]) forKey:@"pace"];
     [[NSUserDefaults standardUserDefaults] registerDefaults:paceDefault];
-    [ServeUp setMyPace:[[NSUserDefaults standardUserDefaults] stringForKey:@"uName"] withPace:[[self difficultyBar] value]];
+    [ServeUp setMyPace:[[NSUserDefaults standardUserDefaults] stringForKey:@"uId"] withPace:[[self difficultyBar] value]];
 }
 
 //gets the value of the paceBar
@@ -48,18 +37,11 @@
     return _difficultyBar.value;
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     //sets the value of the paceBar to the stored val to start
     [[self difficultyBar] setValue:[[[NSUserDefaults standardUserDefaults] stringForKey:@"pace"] floatValue]];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -83,11 +65,45 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self fetchTasks]; ////////////////////
     [[self tasksList] reloadData];
 }
+
+-(void)fetchTasks{//TODO needs work.
+    [ServeUp getTaskList:[[NSUserDefaults standardUserDefaults] stringForKey:@"uId"]];
+    [[self tasksList] reloadData];
+}
+
 
 - (IBAction)needsHelp:(id)sender {
     HelpMessageViewController *helpVC = [[HelpMessageViewController alloc] init];
     [self presentViewController:helpVC animated:YES completion:nil];
 }
+
+-(void)verifyAction{
+    //@"If you leave, you cannot return to this class." 
+    UIAlertView *checkExit = [[UIAlertView alloc] initWithTitle:@"Leave Class"
+                                                        message:@"" 
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [checkExit setTag:101];
+    [checkExit addButtonWithTitle:@"Cancel"];
+    [checkExit show];
+}
+
+- (void)alertView:(UIAlertView *)alertView
+clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if([alertView tag] == 101){
+        if(buttonIndex == 1)
+            return;
+        else{
+            [ServeUp leaveClass:[[NSUserDefaults standardUserDefaults] stringForKey:@"uId"]];
+            NSDictionary* endFirstLoaded = [NSDictionary dictionaryWithObject:@NO forKey:@"firstTimeLoaded"];
+            [[NSUserDefaults standardUserDefaults] registerDefaults:endFirstLoaded];
+            [self dismissViewControllerAnimated:NO completion:nil]; 
+        }
+    }
+}
+
 @end

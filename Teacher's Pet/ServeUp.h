@@ -10,13 +10,14 @@
 
 @interface ServeUp : NSURLConnection <NSURLConnectionDelegate>
 +(NSString*)newUser:(NSString*)nameEx withPace:(NSString*)paceEx withPhone:(NSString*)phoneEx;
-+(NSInteger)newClass;
-+(BOOL)joinClass:(NSInteger)class fromUser:(NSString*)user;
++(NSString*)newClass:(NSString*)user;
++(BOOL)joinClass:(NSString*)classId fromUser:(NSString*)user;
 +(BOOL)leaveClass:(NSString*)user;
-+(NSInteger)addClassTask:(NSInteger)class withDescription:(NSString*)description;
++(NSInteger)addClassTask:(NSString*)classId withDescription:(NSString*)description;
 +(BOOL)finishTask:(NSString*)user withTaskId:(NSInteger)taskId;
 +(NSInteger)getTaskPercent:(NSString*)user withTaskId:(NSInteger)taskId;
-+(NSInteger)getPaceAvg:(NSInteger)taskId;
-+(BOOL)setMyPace:(NSString*)user withPace:(NSInteger)pace;
++(NSInteger)getClassPace:(NSString*)classId;
++(BOOL)setMyPace:(NSString*)user withPace:(float)pace;
 +(NSInteger)sendHelp:(NSString*)user;
++(NSArray*)getTaskList:(NSString*)user;
 @end

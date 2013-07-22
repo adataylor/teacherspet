@@ -8,7 +8,7 @@
 
 #import "TeacherViewController.h"
 
-@interface TeacherViewController ()
+@interface TeacherViewController () <UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 
 @end
@@ -26,8 +26,10 @@
     }
     return self;
 }
+
+//no need to drop the class num (will not allow access back in until new one created)
 - (IBAction)exitView:(id)sender {
-    [self dismissViewControllerAnimated:NO completion:nil];
+    [self verifyAction];
 }
 
 - (void)viewDidLoad
@@ -44,6 +46,30 @@
 
 - (IBAction)addTask:(id)sender {
     //For teacher to add a new task
+}
+
+-(void)verifyAction{
+    UIAlertView *checkExit = [[UIAlertView alloc] initWithTitle:@"Leave Class"
+                                                        message:@"If you leave, you cannot return to this class."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [checkExit setTag:101];
+    [checkExit addButtonWithTitle:@"Cancel"];
+    [checkExit show];
+}
+
+- (void)alertView:(UIAlertView *)alertView
+clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if([alertView tag] == 101){
+        if(buttonIndex == 1)
+            return;
+        else{
+            NSDictionary* endFirstLoaded = [NSDictionary dictionaryWithObject:@NO forKey:@"firstTimeLoaded"];
+            [[NSUserDefaults standardUserDefaults] registerDefaults:endFirstLoaded];
+            [self dismissViewControllerAnimated:NO completion:nil];
+        }
+    }
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "Tasks.h"
+#import "ServeUp.h"
 
 @implementation Tasks
 
@@ -14,7 +15,7 @@
 {
     static Tasks *taskStore = nil;
     if(!taskStore)
-        taskStore = [[super allocWithZone:nil] init];
+        taskStore = [[super alloc] init];
     
     return taskStore;
 }
@@ -31,8 +32,9 @@
     }
     return self;
 }
-- (NSArray *)allTasks
+- (NSArray*)allTasks
 {
+    //allTasks = [ServeUp getTaskList:[[NSUserDefaults standardUserDefaults] stringForKey:@"uId"]];
     return allTasks;
 }
 @end

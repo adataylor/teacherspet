@@ -13,5 +13,5 @@
     NSMutableArray *allTasks;
 }
 + (Tasks *) tasksSingleton;
-- (NSArray *)allTasks;
+- (NSArray*)allTasks;
 @end
